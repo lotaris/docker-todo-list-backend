@@ -1,18 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.lotaris.todo;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.GET;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  * REST Web Service
@@ -24,30 +23,47 @@ public class ToDoListResource {
 
 	@Context
 	private UriInfo context;
-
+	
+	private ToDoListBeanLocal toDoListBean;
+	
 	/**
 	 * Creates a new instance of ToDoListResource
 	 */
 	public ToDoListResource() {
 	}
 
-	/**
-	 * Retrieves representation of an instance of com.lotaris.todo.ToDoListResource
-	 * @return an instance of java.lang.String
-	 */
 	@GET
-  @Produces("application/json")
-	public String getJson() {
-		return "{\"test\" : 123}";
+  @Produces(MediaType.APPLICATION_JSON)
+	public Response getToDoList() {
+		List<ToDoEntity> toDoEntities = toDoListBean.getToDos();
+		List<ToDoTO> toDoTOs = new ArrayList();
+		for (ToDoEntity toDoEntity : toDoEntities) {
+			toDoTOs.add(new ToDoTO(toDoEntity.getId(), toDoEntity.getName(), toDoEntity.isChecked()));
+		}
+		return Response.ok(toDoTOs).build();
 	}
 
-	/**
-	 * PUT method for updating or creating an instance of ToDoListResource
-	 * @param content representation for the resource
-	 * @return an HTTP response with content of the updated or created resource.
-	 */
 	@PUT
-  @Consumes("application/json")
-	public void putJson(String content) {
+  @Consumes(MediaType.APPLICATION_JSON)
+	public Response create(ToDoTO newToDoTO) {
+		toDoListBean.addToDo(newToDoTO.getName());
+		return Response.ok().build();
 	}
+	
+	@GET
+  @Consumes(MediaType.APPLICATION_JSON)
+	@Path("{id}/check")
+	public Response setCheck(@PathParam("id") String id) {
+		toDoListBean.checkToDo(Long.parseLong(id));
+		return Response.ok().build();
+	}
+	
+	@GET
+  @Consumes(MediaType.APPLICATION_JSON)
+	@Path("{id}/uncheck")
+	public Response setUncheck(@PathParam("id") String id) {
+		toDoListBean.uncheckToDo(Long.parseLong(id));
+		return Response.ok().build();
+	}
+
 }

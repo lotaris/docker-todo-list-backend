@@ -10,7 +10,7 @@ import javax.ejb.Local;
 @Local
 public interface ToDoListBeanLocal {
 	
-	List<ToDoEntity> getToDos(boolean isChecked);
+	List<ToDoEntity> getToDos();
 	
 	void addToDo(String name);
 	

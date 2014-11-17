@@ -15,7 +15,7 @@ public class ToDoListBean implements ToDoListBeanLocal {
 	private ToDoEntityFacadeLocal toDoEntityManager;
 
 	@Override
-	public List<ToDoEntity> getToDos(boolean isChecked) {
+	public List<ToDoEntity> getToDos() {
 		return toDoEntityManager.findAll();
 	}
 
