@@ -10,6 +10,9 @@ public class ToDoTO {
 	private String name;
 	private boolean checked;
 
+	public ToDoTO() {
+	}
+
 	public ToDoTO(Long id, String name, boolean checked) {
 		this.id = id;
 		this.name = name;

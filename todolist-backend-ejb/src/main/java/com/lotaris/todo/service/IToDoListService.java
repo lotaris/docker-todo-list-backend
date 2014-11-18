@@ -13,7 +13,7 @@ public interface IToDoListService {
 	
 	List<ToDo> getToDos();
 	
-	void addToDo(String name);
+	Long addToDo(String name);
 	
 	void checkToDo(Long id);
 	

@@ -22,9 +22,9 @@ public class ToDoListService implements IToDoListService {
 	}
 
 	@Override
-	public void addToDo(String name) {
+	public Long addToDo(String name) {
 		ToDo newToDo = new ToDo(name);
-		toDoEntityManager.create(newToDo);
+		return toDoEntityManager.createToDo(newToDo);
 	}
 
 	@Override

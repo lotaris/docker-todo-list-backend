@@ -12,6 +12,8 @@ import javax.ejb.Local;
 public interface IToDoDao {
 
 	void create(ToDo toDoEntity);
+	
+	Long createToDo(ToDo entity);
 
 	void edit(ToDo toDoEntity);
 

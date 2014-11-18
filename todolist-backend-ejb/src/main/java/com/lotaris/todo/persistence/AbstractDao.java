@@ -16,7 +16,7 @@ public abstract class AbstractDao<T> {
 	private final Class<T> entityClass;
 
 	@PersistenceContext(unitName = "TodoListPU")
-	private EntityManager em;
+	protected EntityManager em;
 
 	public AbstractDao(Class<T> entityClass) {
 		this.entityClass = entityClass;

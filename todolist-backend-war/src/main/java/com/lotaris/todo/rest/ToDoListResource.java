@@ -7,7 +7,7 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.PUT;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.GET;
 import javax.ws.rs.PathParam;
@@ -39,18 +39,19 @@ public class ToDoListResource extends ToDoAbstractResource {
 		List<ToDoTO> toDoTOs = new ArrayList();
 		for (ToDo toDoEntity : toDoEntities) {
 			toDoTOs.add(new ToDoTO(toDoEntity.getId(), toDoEntity.getName(), toDoEntity.isChecked()));
-		}
+	}
 		return Response.ok(toDoTOs).build();
 	}
 
-	@PUT
+	@POST
   @Consumes(MediaType.APPLICATION_JSON)
 	public Response create(ToDoTO newToDoTO) {
-		toDoListService.addToDo(newToDoTO.getName());
-		return Response.ok().build();
+		Long toDoId = toDoListService.addToDo(newToDoTO.getName());
+		ToDoTO responseTo = new ToDoTO(toDoId, newToDoTO.getName(), false);
+		return Response.ok(responseTo).build();
 	}
 	
-	@GET
+	@POST
 	@Path("{id}/check")
   @Consumes(MediaType.APPLICATION_JSON)
 	public Response setCheck(@PathParam("id") String id) {
@@ -58,7 +59,7 @@ public class ToDoListResource extends ToDoAbstractResource {
 		return Response.ok().build();
 	}
 	
-	@GET
+	@POST
 	@Path("{id}/uncheck")
   @Consumes(MediaType.APPLICATION_JSON)
 	public Response setUncheck(@PathParam("id") String id) {

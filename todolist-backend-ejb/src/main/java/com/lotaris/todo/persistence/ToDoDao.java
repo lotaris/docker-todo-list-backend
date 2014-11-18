@@ -12,4 +12,11 @@ public class ToDoDao extends AbstractDao<ToDo> implements IToDoDao {
 	public ToDoDao() {
 		super(ToDo.class);
 	}
+	
+	@Override
+	public Long createToDo(ToDo entity) {
+		create(entity);
+		em.flush();
+		return entity.getId();
+	}
 }
