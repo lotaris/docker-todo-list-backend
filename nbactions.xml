@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+	<action>
+		<actionName>CUSTOM-deploy</actionName>
+		<displayName>Glassfish deploy (Schema Gen)</displayName>
+		<goals>
+			<goal>clean</goal>
+			<goal>install</goal>
+			<goal>-e</goal>
+			<goal>-PbuildSource</goal>
+			<goal>-PglassfishDeploy</goal>
+			<goal>-Ptesting</goal>
+			<goal>-ssettings.xml</goal>
+		</goals>
+	</action>
+	<action>
+		<actionName>CUSTOM-compile-only</actionName>
+		<displayName>Compile only</displayName>
+		<goals>
+			<goal>clean</goal>
+			<goal>install</goal>
+			<goal>-e</goal>
+			<goal>-PbuildSource</goal>
+			<goal>-Ptesting</goal>
+			<goal>-ssettings.xml</goal>
+		</goals>
+	</action>
+	<action>
+		<actionName>CUSTOM-download-sources-and-javadocs</actionName>
+		<displayName>Download sources &amp; javadocs</displayName>
+		<goals>
+			<goal>dependency:sources</goal>
+			<goal>dependency:resolve</goal>
+			<goal>-e</goal>
+		</goals>
+		<properties>
+			<classifier>javadoc</classifier>
+		</properties>
+	</action>
+</actions>

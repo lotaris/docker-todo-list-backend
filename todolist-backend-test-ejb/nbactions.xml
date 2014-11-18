@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+	<action>
+		<actionName>CUSTOM-Integration</actionName>
+		<displayName>Integration (ITF) Tests</displayName>
+		<goals>
+			<goal>clean</goal>
+			<goal>rox-jee-itf:itf</goal>
+			<goal>-PbuildSource</goal>
+			<goal>-Ptesting</goal>
+			<goal>-PintegrationTesting</goal>
+			<goal>-s../settings.xml</goal>
+		</goals>
+		<properties>
+			<Env.MAVEN_OPTS>-Xms2048m -Xmx2048m -XX:PermSize=2048m -XX:MaxPermSize=2048m</Env.MAVEN_OPTS>
+		</properties>
+	</action>
+</actions>
