@@ -287,8 +287,8 @@
 						<configuration>
 							<artifactItems>
 								<artifactItem>
-									<groupId>${project.groupId}}</groupId>
-									<artifactId>${project.artfiactId}</artifactId>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>${project.artifactId}</artifactId>
 									<version>${project.version}</version>
 									<type>${project.packaging}</type>
 									<overWrite>true</overWrite>
@@ -296,6 +296,15 @@
 								</artifactItem>
 							</artifactItems>
 						</configuration>
+						<executions>
+							<execution>
+								<id>copyArtifact</id>
+								<phase>compile</phase>
+								<goals>
+									<goal>copy</goal>
+								</goals>
+							</execution>
+						</executions>
 					</plugin>
 				</plugins>
 			</build>
