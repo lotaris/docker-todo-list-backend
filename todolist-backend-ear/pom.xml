@@ -193,6 +193,7 @@
 						<executions>
 							<execution>
 								<id>glassfish</id>
+								<phase>post-integration-test</phase>
 								<goals>
 									<goal>deploy</goal>
 								</goals>
@@ -246,7 +247,7 @@
 						<executions>
 							<execution>
 								<id>dbunit</id>
-								<phase>integration-test</phase>
+								<phase>verify</phase>
 								<goals>
 									<goal>operation</goal>
 								</goals>
@@ -267,6 +268,7 @@
 						<executions>
 							<execution>
 								<id>glassfish</id>
+								<phase>post-integration-test</phase>
 								<goals>
 									<goal>deploy</goal>
 								</goals>
@@ -299,7 +301,7 @@
 						<executions>
 							<execution>
 								<id>copyArtifact</id>
-								<phase>verify</phase>
+								<phase>pre-integration-test</phase>
 								<goals>
 									<goal>copy</goal>
 								</goals>
