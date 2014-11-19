@@ -17,7 +17,7 @@
 				<settings.lotaris.glassfish.home>{{ glassfish_root }}/glassfish</settings.lotaris.glassfish.home>
 				<settings.lotaris.glassfish.host>{{ glassfish_host }}</settings.lotaris.glassfish.host>
 				<settings.lotaris.glassfish.user>admin</settings.lotaris.glassfish.user>
-				<settings.lotaris.glassfish.passfile>${settings.lotaris.glassfish.root}/bin/PASSWORD_FILE</settings.lotaris.glassfish.passfile>
+				<settings.lotaris.glassfish.passfile>{{ glassfish_root }}/bin/PASSWORD_FILE</settings.lotaris.glassfish.passfile>
 				
 				<settings.lotaris.todolist.jdbc.database>TODOLIST</settings.lotaris.todolist.jdbc.database>
 				<settings.lotaris.todolist.jdbc.password>{{ mysql_password }}</settings.lotaris.todolist.jdbc.password>
