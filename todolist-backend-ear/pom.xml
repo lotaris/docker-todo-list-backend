@@ -299,7 +299,7 @@
 						<executions>
 							<execution>
 								<id>copyArtifact</id>
-								<phase>compile</phase>
+								<phase>verify</phase>
 								<goals>
 									<goal>copy</goal>
 								</goals>
