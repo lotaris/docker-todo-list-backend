@@ -15,6 +15,11 @@
 
 	<properties>
 		<project.encoding>UTF-8</project.encoding>
+		
+		<domain.host>${settings.lotaris.glassfish.host}</domain.host>
+		<domain.adminPort>${settings.lotaris.glassfish.admin.port}</domain.adminPort>
+		<deployConfig.file>${project.basedir}/target/${project.build.finalName}.${project.packaging}</deployConfig.file>
+		<deployConfig.upload>false</deployConfig.upload>
 	</properties>
 
 	<build>
@@ -34,14 +39,16 @@
 
 						<domain>
 							<name>${settings.lotaris.glassfish.domain}</name>
-							<adminPort>${settings.lotaris.glassfish.admin.port}</adminPort>
+							<host>${domain.host}</host>
+							<adminPort>${domain.adminPort}</adminPort>
 						</domain>
 
 						<deployConfig>
 							<name>${project.artifactId}</name>
-							<file>${project.basedir}/target/${project.build.finalName}.${project.packaging}</file>
+							<file>${deployConfig.file}</file>
 							<type>${project.packaging}</type>
 							<force>true</force>
+							<upload>${deployConfig.upload}</upload>
 						</deployConfig>
 					</configuration>
 				</plugin>
@@ -245,6 +252,50 @@
 								</goals>
 							</execution>
 						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>glassfishSlaveDeploy</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.lotaris.maven.plugins</groupId>
+						<artifactId>lotaris-glassfish-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>glassfish</id>
+								<goals>
+									<goal>deploy</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		
+		<profile>
+			<id>copyArtifact</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>${project.groupId}}</groupId>
+									<artifactId>${project.artfiactId}</artifactId>
+									<version>${project.version}</version>
+									<type>${project.packaging}</type>
+									<overWrite>true</overWrite>
+									<outputDirectory>${settings.lotaris.artifacts.directory}</outputDirectory>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
 					</plugin>
 				</plugins>
 			</build>

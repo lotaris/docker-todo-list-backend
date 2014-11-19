@@ -9,17 +9,20 @@
 			<id>buildSource</id>
 			
 			<properties>
+				<settings.lotaris.artifacts.directory>{{ artifacts_directory }}</settings.lotaris.artifacts.directory>
+				
+				<settings.lotaris.glassfish.admin.port>4848</settings.lotaris.glassfish.admin.port>
+				<settings.lotaris.glassfish.base.url>http://${settings.lotaris.glassfish.host}:8080</settings.lotaris.glassfish.base.url>
+				<settings.lotaris.glassfish.domain>domain1</settings.lotaris.glassfish.domain>
 				<settings.lotaris.glassfish.home>{{ glassfish_home }}</settings.lotaris.glassfish.home>
+				<settings.lotaris.glassfish.host>{{ glassfish_host }}</settings.lotaris.glassfish.host>
 				<settings.lotaris.glassfish.user>admin</settings.lotaris.glassfish.user>
 				<settings.lotaris.glassfish.passfile>${settings.lotaris.glassfish.home}/bin/PASSWORD_FILE</settings.lotaris.glassfish.passfile>
-				<settings.lotaris.glassfish.base.url>http://{{ glassfish_host }}:8080</settings.lotaris.glassfish.base.url>
-				<settings.lotaris.glassfish.domain>domain1</settings.lotaris.glassfish.domain>
-				<settings.lotaris.glassfish.admin.port>4848</settings.lotaris.glassfish.admin.port>
 				
-				<settings.lotaris.todolist.jdbc.url>jdbc:mysql://{{ mysql_host }}:3306</settings.lotaris.todolist.jdbc.url>
 				<settings.lotaris.todolist.jdbc.database>TODOLIST</settings.lotaris.todolist.jdbc.database>
-				<settings.lotaris.todolist.jdbc.username>{{ mysql_user }}</settings.lotaris.todolist.jdbc.username>
 				<settings.lotaris.todolist.jdbc.password>{{ mysql_password }}</settings.lotaris.todolist.jdbc.password>
+				<settings.lotaris.todolist.jdbc.url>jdbc:mysql://{{ mysql_host }}:3306</settings.lotaris.todolist.jdbc.url>
+				<settings.lotaris.todolist.jdbc.username>{{ mysql_user }}</settings.lotaris.todolist.jdbc.username>
 			</properties>
 		</profile>
 	</profiles>
