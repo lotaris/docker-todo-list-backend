@@ -43,7 +43,11 @@ public class ToDoListService implements IToDoListService {
 
 	@Override
 	public void cleanup(boolean onlyCompleted) {
-		toDoEntityManager.deleteCompleted();
+		if (onlyCompleted) {
+			toDoEntityManager.deleteCompleted();
+		} else {
+			toDoEntityManager.deleteAll();
+		}
 	}
 	
 }

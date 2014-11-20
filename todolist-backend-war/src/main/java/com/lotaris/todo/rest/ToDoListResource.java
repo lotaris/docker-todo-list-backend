@@ -8,6 +8,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.GET;
@@ -69,16 +70,18 @@ public class ToDoListResource extends ToDoAbstractResource {
 		toDoListService.uncheckToDo(Long.parseLong(id));
 		return Response.ok().build();
 	}
-	
+
 	@DELETE
 	public Response cleanup(@QueryParam("type") String type) {
-		switch (type) {
-			case "completed":
-				toDoListService.cleanup(true);
-				break;
-			case "all":
-				toDoListService.cleanup(false);
-				break;
+		if (type != null) {
+			switch (type) {
+				case "completed":
+					toDoListService.cleanup(true);
+					break;
+				case "all":
+					toDoListService.cleanup(false);
+					break;
+			}
 		}
 		return getToDoList();
 	}
