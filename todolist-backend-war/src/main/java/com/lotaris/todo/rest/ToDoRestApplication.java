@@ -32,6 +32,7 @@ public class ToDoRestApplication extends AbstractRestApplication {
 	public Set<Object> getSingletons() {
 		final Set<Object> singletons = new HashSet<>(2);
 		singletons.add(new JacksonJsonProvider());
+		singletons.add(new IdentifierHeaderResponseFilter());
 		return singletons;
 	}
 
