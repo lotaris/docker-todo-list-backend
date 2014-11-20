@@ -193,6 +193,7 @@
 						<executions>
 							<execution>
 								<id>glassfish</id>
+								<phase>post-integration-test</phase>
 								<goals>
 									<goal>deploy</goal>
 								</goals>
@@ -246,7 +247,7 @@
 						<executions>
 							<execution>
 								<id>dbunit</id>
-								<phase>integration-test</phase>
+								<phase>verify</phase>
 								<goals>
 									<goal>operation</goal>
 								</goals>
@@ -267,6 +268,7 @@
 						<executions>
 							<execution>
 								<id>glassfish</id>
+								<phase>post-integration-test</phase>
 								<goals>
 									<goal>deploy</goal>
 								</goals>
@@ -287,8 +289,8 @@
 						<configuration>
 							<artifactItems>
 								<artifactItem>
-									<groupId>${project.groupId}}</groupId>
-									<artifactId>${project.artfiactId}</artifactId>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>${project.artifactId}</artifactId>
 									<version>${project.version}</version>
 									<type>${project.packaging}</type>
 									<overWrite>true</overWrite>
@@ -296,6 +298,15 @@
 								</artifactItem>
 							</artifactItems>
 						</configuration>
+						<executions>
+							<execution>
+								<id>copyArtifact</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>copy</goal>
+								</goals>
+							</execution>
+						</executions>
 					</plugin>
 				</plugins>
 			</build>
