@@ -7,11 +7,13 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.GET;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -20,12 +22,13 @@ import javax.ws.rs.core.Response;
  *
  * @author Francois Vessaz <francois.vessaz@lotaris.com>
  */
-@Path("list")
+@Path("todos")
 @RequestScoped
 public class ToDoListResource extends ToDoAbstractResource {
+
 	@Inject
 	private IToDoListService toDoListService;
-	
+
 	/**
 	 * Creates a new instance of ToDoListResource
 	 */
@@ -33,38 +36,51 @@ public class ToDoListResource extends ToDoAbstractResource {
 	}
 
 	@GET
-  @Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response getToDoList() {
 		List<ToDo> toDoEntities = toDoListService.getToDos();
 		List<ToDoTO> toDoTOs = new ArrayList();
 		for (ToDo toDoEntity : toDoEntities) {
 			toDoTOs.add(new ToDoTO(toDoEntity.getId(), toDoEntity.getName(), toDoEntity.isChecked()));
-	}
+		}
 		return Response.ok(toDoTOs).build();
 	}
 
 	@POST
-  @Consumes(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response create(ToDoTO newToDoTO) {
 		Long toDoId = toDoListService.addToDo(newToDoTO.getName());
 		ToDoTO responseTo = new ToDoTO(toDoId, newToDoTO.getName(), false);
 		return Response.ok(responseTo).build();
 	}
-	
+
 	@POST
 	@Path("{id}/check")
-  @Consumes(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response setCheck(@PathParam("id") String id) {
 		toDoListService.checkToDo(Long.parseLong(id));
 		return Response.ok().build();
 	}
-	
+
 	@POST
 	@Path("{id}/uncheck")
-  @Consumes(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response setUncheck(@PathParam("id") String id) {
 		toDoListService.uncheckToDo(Long.parseLong(id));
 		return Response.ok().build();
+	}
+	
+	@DELETE
+	public Response cleanup(@QueryParam("type") String type) {
+		switch (type) {
+			case "completed":
+				toDoListService.cleanup(true);
+				break;
+			case "all":
+				toDoListService.cleanup(false);
+				break;
+		}
+		return getToDoList();
 	}
 
 }

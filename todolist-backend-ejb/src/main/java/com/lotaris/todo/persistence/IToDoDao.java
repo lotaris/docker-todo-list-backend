@@ -27,4 +27,8 @@ public interface IToDoDao {
 
 	int count();
 	
+	void deleteAll();
+	
+	void deleteCompleted();
+	
 }

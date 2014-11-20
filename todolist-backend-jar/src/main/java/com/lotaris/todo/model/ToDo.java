@@ -5,18 +5,27 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
+import static com.lotaris.todo.model.QueryNames.*;
 
 /**
  *
  * @author Francois Vessaz <francois.vessaz@lotaris.com>
  */
 @Entity
+@NamedQueries({
+	@NamedQuery(name = DELETE_ALL_TODOS, query = "DELETE FROM ToDo"),
+	@NamedQuery(name = DELETE_COMPLETED_TODOS, query = "DELETE FROM ToDo t WHERE t.checked = TRUE")
+})
 public class ToDo implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 	@Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String name;
 	private boolean checked;
 
@@ -73,5 +82,5 @@ public class ToDo implements Serializable {
 	public String toString() {
 		return "com.lotaris.ToDoEntity[ id=" + id + " ]";
 	}
-	
+
 }

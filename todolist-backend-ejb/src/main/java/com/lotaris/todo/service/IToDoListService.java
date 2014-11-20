@@ -19,4 +19,6 @@ public interface IToDoListService {
 	
 	void uncheckToDo(Long id);
 	
+	void cleanup(boolean onlyCompleted);
+	
 }

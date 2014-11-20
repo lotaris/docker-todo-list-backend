@@ -40,5 +40,10 @@ public class ToDoListService implements IToDoListService {
 		toDoToCheck.setChecked(false);
 		toDoEntityManager.edit(toDoToCheck);
 	}
+
+	@Override
+	public void cleanup(boolean onlyCompleted) {
+		toDoEntityManager.deleteCompleted();
+	}
 	
 }
