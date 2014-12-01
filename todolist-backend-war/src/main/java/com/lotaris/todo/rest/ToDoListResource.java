@@ -59,7 +59,7 @@ public class ToDoListResource extends ToDoAbstractResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response setCheck(@PathParam("id") String id) {
 		toDoListService.checkToDo(Long.parseLong(id));
-		return Response.ok().build();
+		return Response.status(204).build();
 	}
 
 	@POST
@@ -67,7 +67,7 @@ public class ToDoListResource extends ToDoAbstractResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response setUncheck(@PathParam("id") String id) {
 		toDoListService.uncheckToDo(Long.parseLong(id));
-		return Response.ok().build();
+		return Response.status(204).build();
 	}
 
 	@DELETE
@@ -80,9 +80,13 @@ public class ToDoListResource extends ToDoAbstractResource {
 				case "all":
 					toDoListService.cleanup(false);
 					break;
+				default:
+					return Response.serverError().build();
 			}
+			return getToDoList();
+		} else {
+			return Response.serverError().build();
 		}
-		return getToDoList();
 	}
 
 }
