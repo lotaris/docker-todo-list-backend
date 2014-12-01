@@ -11,8 +11,8 @@
 		<shared-cache-mode>NONE</shared-cache-mode>
 
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="${settings.lotaris.todolist.jdbc.url}/${settings.lotaris.todolist.database"/>
-			<property name="javax.persistence.jdbc.user" value="settings.lotaris.todolist.jdbc.username}"/>
+			<property name="javax.persistence.jdbc.url" value="${settings.lotaris.todolist.jdbc.url}/${settings.lotaris.todolist.jdbc.database}"/>
+			<property name="javax.persistence.jdbc.user" value="${settings.lotaris.todolist.jdbc.username}"/>
 			<property name="javax.persistence.jdbc.password" value="${settings.lotaris.todolist.jdbc.password}"/>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 		</properties>

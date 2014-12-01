@@ -10,6 +10,7 @@
 			<goal>-PbuildSource</goal>
 			<goal>-PglassfishDeploy</goal>
 			<goal>-Ptesting</goal>
+			<goal>-PunitTesting</goal>
 			<goal>-ssettings.xml</goal>
 		</goals>
 	</action>
@@ -22,6 +23,7 @@
 			<goal>-e</goal>
 			<goal>-PbuildSource</goal>
 			<goal>-Ptesting</goal>
+			<goal>-PunitTesting</goal>
 			<goal>-ssettings.xml</goal>
 		</goals>
 	</action>
